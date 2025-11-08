@@ -59,11 +59,11 @@ function love.keypressed(key)                   --gamestate manager (?)
         if key == "escape" then
             gamestate = "paused"
         end
-    else if gamestate == "paused" then
+    elseif gamestate == "paused" then
         if key == "escape" then
             gamestate = "playing"
         end
-    else if gamestate == "mainMenu" then
+    elseif gamestate == "mainMenu" then
         if love.keyboard.isDown("space") then
             gamestate = "playing"
         end
@@ -78,12 +78,14 @@ function love.draw()
 
     ------------------------------- Playing --------------------------------
     if gamestate == "playing" then
-        -- game world
+        -- game world / drwa hitboxes or colliders
         world:draw()
 
         -- user interface
         love.graphics.print(tostring(ball.moving), 100, 100)
-        drawBall()
+
+        love.graphics.print(p1GoalY, 50, 50)
+        love.graphics.print(p2GoalY, 50, 100)
     end
 
     ------------------------------- Paused --------------------------------
@@ -91,6 +93,3 @@ function love.draw()
         love.graphics.printf("Game Paused\nPress ESCAPE to resume", 0, love.graphics.getHeight()/2, love.graphics.getWidth(), "center")
     end
 end
-
-end
-end     --?????

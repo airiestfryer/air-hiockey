@@ -2,14 +2,14 @@ function playersLoad()
     player1 = {}
     player1.x = 400
     player1.y = 300
-    player1.speed = 200
+    player1.speed = 300
     player1.size = 50
     player1.collider = world:newCircleCollider(player1.x, player1.y, player1.size)
 
     player2 = {}
     player2.x = 1000
     player2.y = 300
-    player2.speed = 200
+    player2.speed = 300
     player2.size = 50
     player2.collider = world:newCircleCollider(player2.x, player2.y, player2.size)
 end
