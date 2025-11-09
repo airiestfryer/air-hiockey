@@ -2,4 +2,4 @@ air hocky practice project being made by beginner game devloper (me) using LOVE2
 
 my first game i plan to actually complete, goodluck me
 
-status: Incomplete but functional
+status: base game is complete and functional with score system but no round system
