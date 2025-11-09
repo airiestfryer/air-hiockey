@@ -5,6 +5,7 @@ function love.load()
     require "modules/players"
     require "modules/borders"
     require "modules/ball"
+    require "modules/score"
 
     -- gamestate
     gamestate = "mainMenu"
@@ -31,6 +32,9 @@ function love.load()
 
     -- loading ball
     createBall()
+
+    -- initializing score variables
+    scoreInitialize()
 end
 
 function love.update(dt)
@@ -41,11 +45,20 @@ function love.update(dt)
 
     ------------------------------- Playing --------------------------------
     if gamestate == "playing" then
-        ballVectorNormalizer()
+        ball:speedControl()
 
         world:update(dt)
         -- player movement
         playerMovement(dt)
+
+        -- score system
+        if player1Goal:enter('ball') then
+            p2Scores()
+        end
+
+        if player2Goal:enter('ball') then
+            p1Scores()
+        end
     end
 
     ------------------------------- Paused --------------------------------
@@ -82,10 +95,7 @@ function love.draw()
         world:draw()
 
         -- user interface
-        love.graphics.print(tostring(ball.moving), 100, 100)
-
-        love.graphics.print(p1GoalY, 50, 50)
-        love.graphics.print(p2GoalY, 50, 100)
+        drawScores()
     end
 
     ------------------------------- Paused --------------------------------

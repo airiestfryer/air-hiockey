@@ -1,26 +1,11 @@
-function createBall()
-    ball = {}
-    ball.x = 500
-    ball.y = 400
-    ball.idealSpeed = 300
-    ball.size = 30
-    ball.collider = world:newCircleCollider(ball.x, ball.y, 10)
-    ball.collider:setCollisionClass('ball')
-    ball.collider:setRestitution(1)
-    ball.body = ball.collider:getBody()
-    ball.moving = false
-
-end
-
 function ballVectorNormalizer()
     ball.vx, ball.vy = ball.body:getLinearVelocity()
     ball.speed = math.sqrt(ball.vx ^ 2 + ball.vy ^ 2)
 
     if ball.speed < 1 then
         ball.moving = false
-    else if ball.speed > 0 then
+    elseif ball.speed > 0 then
         ball.moving = true
-    end
     end
 
     if ball.speed < 300 and ball.speed > 300 then
@@ -31,6 +16,26 @@ function ballVectorNormalizer()
         ball.collider:destroy()
     end
 end
+
+
+function createBall(x, y)
+    ball = {}
+    ball.x = x or 500
+    ball.y = y or 400
+    ball.idealSpeed = 300
+    ball.size = 10
+    ball.collider = world:newCircleCollider(ball.x, ball.y, ball.size)
+    ball.collider:setCollisionClass('ball')
+    ball.collider:setRestitution(1)
+    ball.body = ball.collider:getBody()
+    ball.moving = false
+
+    balls = {}
+    balls.speedControl = ballVectorNormalizer
+    setmetatable(ball, { __index = balls })
+end
+
+
 
 function drawBall()
     if ball.moving == true then

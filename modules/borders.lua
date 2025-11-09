@@ -9,11 +9,11 @@ function createBorders()
     net:setType('static')
     net:setCollisionClass('net')
 
-    player1Goal = world:newRectangleCollider(-3, (baseGoalSize - p1GoalSize), 2, (baseGoalSize + (p1GoalSize*2)))
+    player1Goal = world:newRectangleCollider(-23, (baseGoalSize - p1GoalSize), 20, (baseGoalSize + (p1GoalSize*2)))
     player1Goal:setType('static')
     player1Goal:setCollisionClass('goal1')
 
-    player2Goal = world:newRectangleCollider(w+1, (baseGoalSize - p2GoalSize), 2, (baseGoalSize + (p2GoalSize*2)))
+    player2Goal = world:newRectangleCollider(w+1, (baseGoalSize - p2GoalSize), 20, (baseGoalSize + (p2GoalSize*2)))
     player2Goal:setType('static')
     player2Goal:setCollisionClass('goal2')
 
